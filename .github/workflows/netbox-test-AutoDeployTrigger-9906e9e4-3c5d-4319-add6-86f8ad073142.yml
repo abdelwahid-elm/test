@@ -1,0 +1,49 @@
+name: Trigger auto deployment for netbox-test
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo
+  push:
+    branches: 
+      [ main ]
+    paths:
+    - '**'
+    - '.github/workflows/netbox-test-AutoDeployTrigger-9906e9e4-3c5d-4319-add6-86f8ad073142.yml'
+
+  # Allow manual trigger 
+  workflow_dispatch:      
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions: 
+      id-token: write #This is required for requesting the OIDC JWT Token
+      contents: read #Required when GH token is used to authenticate with private repo
+
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v2
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.NETBOXTEST_AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.NETBOXTEST_AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.NETBOXTEST_AZURE_SUBSCRIPTION_ID }}
+
+      - name: Build and push container image to registry
+        uses: azure/container-apps-deploy-action@v2
+        with:
+          appSourcePath: ${{ github.workspace }}
+          _dockerfilePathKey_: _dockerfilePath_
+          _targetLabelKey_: _targetLabel_
+          registryUrl: docker.io
+          registryUsername: ${{ secrets.NETBOXTEST_REGISTRY_USERNAME }}
+          registryPassword: ${{ secrets.NETBOXTEST_REGISTRY_PASSWORD }}
+          containerAppName: netbox-test
+          resourceGroup: rg-test
+          imageToBuild: abdelini123/netbox-test:${{ github.sha }}
+          _buildArgumentsKey_: |
+            _buildArgumentsValues_
+
+
