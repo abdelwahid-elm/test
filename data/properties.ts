@@ -3,7 +3,7 @@ import type { Property } from "@/types/domain";
 export const properties: Property[] = [
   {
     id: "prop-vilvoorde",
-    name: { nl: "Familiewoning Vilvoorde", fr: "Maison familiale à Vilvoorde" },
+    name: { nl: "Familiewoning van Abdelwahid", fr: "Maison familiale d'Abdelwahid" },
     city: "Vilvoorde",
     country: "België",
     address: "Kerkstraat 14, 1800 Vilvoorde",
@@ -33,7 +33,7 @@ export const properties: Property[] = [
   },
   {
     id: "prop-machelen",
-    name: { nl: "Woning Machelen", fr: "Maison à Machelen" },
+    name: { nl: "Woning van Ilias", fr: "Maison d'Ilias" },
     city: "Machelen",
     country: "België",
     address: "Stationsstraat 22, 1830 Machelen",
@@ -63,7 +63,7 @@ export const properties: Property[] = [
   },
   {
     id: "prop-mechelen",
-    name: { nl: "Herenhuis Mechelen", fr: "Maison de maître à Malines" },
+    name: { nl: "Herenhuis van Abderrahim", fr: "Maison de maître d'Abderrahim" },
     city: "Mechelen",
     country: "België",
     address: "Bruul 8, 2800 Mechelen",
@@ -89,7 +89,7 @@ export const properties: Property[] = [
   },
   {
     id: "prop-leuven",
-    name: { nl: "Rijwoning Leuven", fr: "Maison mitoyenne à Louvain" },
+    name: { nl: "Rijwoning van Nourdine", fr: "Maison mitoyenne de Nourdine" },
     city: "Leuven",
     country: "België",
     address: "Naamsestraat 145, 3000 Leuven",
@@ -116,7 +116,7 @@ export const properties: Property[] = [
   },
   {
     id: "prop-kapellen",
-    name: { nl: "Villa Kapellen", fr: "Villa à Kapellen" },
+    name: { nl: "Villa van Fouad", fr: "Villa de Fouad" },
     city: "Kapellen",
     country: "België",
     address: "Antwerpsesteenweg 60, 2950 Kapellen",
@@ -146,7 +146,7 @@ export const properties: Property[] = [
   },
   {
     id: "prop-grimbergen",
-    name: { nl: "Woning Grimbergen", fr: "Maison à Grimbergen" },
+    name: { nl: "Woning van Tarik", fr: "Maison de Tarik" },
     city: "Grimbergen",
     country: "België",
     address: "Guldendal 5, 1850 Grimbergen",
@@ -176,7 +176,7 @@ export const properties: Property[] = [
   },
   {
     id: "prop-kortenberg",
-    name: { nl: "Woning Kortenberg", fr: "Maison à Kortenberg" },
+    name: { nl: "Woning van Rachid", fr: "Maison de Rachid" },
     city: "Kortenberg",
     country: "België",
     address: "Dorpsstraat 33, 3070 Kortenberg",
@@ -206,7 +206,7 @@ export const properties: Property[] = [
   },
   {
     id: "prop-wemmel",
-    name: { nl: "Penthouse Wemmel", fr: "Penthouse à Wemmel" },
+    name: { nl: "Penthouse van Youness", fr: "Penthouse de Youness" },
     city: "Wemmel",
     country: "België",
     address: "Brusselsesteenweg 210, 1780 Wemmel",
@@ -232,7 +232,7 @@ export const properties: Property[] = [
   },
   {
     id: "prop-alhoceima",
-    name: { nl: "Appartement Al Hoceima", fr: "Appartement à Al Hoceima" },
+    name: { nl: "Appartement van Said", fr: "Appartement de Said" },
     city: "Al Hoceima",
     country: "Marokko",
     address: "Corniche, Quartier Sbadla, Al Hoceima",
@@ -262,7 +262,7 @@ export const properties: Property[] = [
   },
   {
     id: "prop-nador",
-    name: { nl: "Villa Nador", fr: "Villa à Nador" },
+    name: { nl: "Villa van Ayoub", fr: "Villa d'Ayoub" },
     city: "Nador",
     country: "Marokko",
     address: "Avenue Ibn Rochd, Nador",
@@ -292,7 +292,7 @@ export const properties: Property[] = [
   },
   {
     id: "prop-imzouren",
-    name: { nl: "Woning Imzouren", fr: "Maison à Imzouren" },
+    name: { nl: "Woning van Abdelatif", fr: "Maison d'Abdelatif" },
     city: "Imzouren",
     country: "Marokko",
     address: "Route Nationale 2, Imzouren",
@@ -322,7 +322,7 @@ export const properties: Property[] = [
   },
   {
     id: "prop-martil",
-    name: { nl: "Studio Martil", fr: "Studio à Martil" },
+    name: { nl: "Studio van Abdelilah", fr: "Studio d'Abdelilah" },
     city: "Martil",
     country: "Marokko",
     address: "Avenue Moulay Youssef, Martil",
