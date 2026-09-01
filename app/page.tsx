@@ -28,7 +28,7 @@ export default function HomePage() {
     <div className="flex flex-col gap-6">
       <div>
         <h1 className="font-serif text-2xl text-ink-950 lg:text-3xl">
-          {dict.dashboard.greeting}, Youssef
+          {dict.dashboard.greeting}, Abdelwahid
         </h1>
         <p className="mt-1 max-w-xl text-sm text-ink-600/80">{dict.dashboard.subtitle}</p>
       </div>
