@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap");
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  border-color: rgba(11, 13, 12, 0.08);
+}
+
+body {
+  background-color: #f6f4ee;
+  color: #121512;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.ownership-bar-track {
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(11, 13, 12, 0.05),
+    rgba(11, 13, 12, 0.05) 1px,
+    transparent 1px,
+    transparent 10%
+  );
+}
