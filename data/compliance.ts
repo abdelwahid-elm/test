@@ -2,7 +2,7 @@ import type { ComplianceRequirement } from "@/types/domain";
 
 export const complianceRequirements: ComplianceRequirement[] = [
   { id: "cmp-1", category: "aml_kyc", label: { nl: "Identiteit geverifieerd", fr: "Identité vérifiée" }, status: "complete" },
-  { id: "cmp-2", category: "aml_kyc", label: { nl: "Herkomst van middelen gedocumenteerd", fr: "Origine des fonds documentée" }, status: "attention_required", propertyId: "prop-kortenberg", detail: { nl: "Documentatie voor de inbreng van Familielid 8 ontbreekt nog.", fr: "La documentation de l'apport de Membre 8 manque encore." } },
+  { id: "cmp-2", category: "aml_kyc", label: { nl: "Herkomst van middelen gedocumenteerd", fr: "Origine des fonds documentée" }, status: "attention_required", propertyId: "prop-kortenberg", detail: { nl: "Documentatie voor de inbreng van Abdelatif ontbreekt nog.", fr: "La documentation de l'apport d'Abdelatif manque encore." } },
   { id: "cmp-3", category: "ubo", label: { nl: "UBO-informatie volledig", fr: "Informations UBO complètes" }, status: "complete" },
   { id: "cmp-4", category: "notarial", label: { nl: "Eigendomsakte opgeladen", fr: "Acte de propriété téléversé" }, status: "complete", propertyId: "prop-vilvoorde" },
   { id: "cmp-5", category: "notarial", label: { nl: "Eigendomsakte opgeladen", fr: "Acte de propriété téléversé" }, status: "in_progress", propertyId: "prop-kapellen" },
