@@ -106,7 +106,7 @@ function generateLedger(): LedgerEntry[] {
       propertyId: property.id,
       participantId: property.residentId,
       type: "property_expense",
-      amount: Math.round(1200 + rand() * 3200),
+      amount: Math.round(300 + rand() * 900),
       ownershipImpact: false,
       timestamp: addMonths(property.purchaseDate, 20),
     });
@@ -118,7 +118,7 @@ function generateLedger(): LedgerEntry[] {
   let omarPct = 30;
   let saraPct = 20;
   for (let i = 1; i <= 6; i++) {
-    const amount = 2000 + Math.round(rand() * 500);
+    const amount = 600 + Math.round(rand() * 200);
     const before = { "p-youssef": youssefPct, "p-omar": omarPct, "p-sara": saraPct };
     const acquiredPct = (amount / vilvoorde.currentValuation) * 100;
     const omarShare = omarPct / (omarPct + saraPct);
@@ -149,7 +149,7 @@ function generateLedger(): LedgerEntry[] {
   // 6. A couple of buy-outs elsewhere for realism
   for (const propId of ["prop-machelen", "prop-leuven"]) {
     const p = properties.find((pr) => pr.id === propId)!;
-    const amount = 1800 + Math.round(rand() * 900);
+    const amount = 500 + Math.round(rand() * 250);
     pushEntry(entries, {
       propertyId: p.id,
       participantId: p.residentId,

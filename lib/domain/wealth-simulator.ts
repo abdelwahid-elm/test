@@ -124,16 +124,16 @@ export function simulateFamilyWealth(
 }
 
 export const DEFAULT_SIMULATOR_INPUT: WealthSimulatorInput = {
-  numberOfMembers: 12,
-  startingCapital: 180000,
-  monthlyContributionsTotal: 4500,
-  propertyAcquisitionPrice: 350000,
+  numberOfMembers: 15,
+  startingCapital: 60000,
+  monthlyContributionsTotal: 1200,
+  propertyAcquisitionPrice: 90000,
   residentContributionPercent: 45,
   appreciationRateAnnual: 0.025,
   maintenanceCostRateAnnual: 0.012,
   transactionCostRate: 0.045,
   vacancyRatePercent: 3,
   liquidityReserveTargetPercent: 8,
-  buyoutSpeedMonthlyPerProperty: 900,
-  newPropertyEveryYears: 2,
+  buyoutSpeedMonthlyPerProperty: 250,
+  newPropertyEveryYears: 3,
 };

@@ -24,5 +24,5 @@ Open http://localhost:3000.
 - `lib/domain/` — pure, testbare financiële rekenlogica (eigendom, gebruiksvergoeding,
   pad-naar-100%, bijkoopsimulatie, familievermogen-simulator)
 - `lib/i18n/` — NL/FR-vertaalsysteem en begrippenlijst (tooltips in eenvoudige taal)
-- `data/` — demo-dataset (12 familieleden, 8 woningen, kansen, kasboek, governance, compliance)
+- `data/` — demo-dataset (15 familieleden, 12 woningen in België en Marokko, kansen, kasboek, governance, compliance)
 - `types/domain.ts` — het domeinmodel (eigendom, kapitaal, transacties, governance, compliance, sharia)
