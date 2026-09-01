@@ -16,6 +16,15 @@ function addMonths(iso: string, months: number): string {
   return d.toISOString().slice(0, 10);
 }
 
+const NOW = new Date("2026-09-01");
+
+function monthsSince(iso: string): number {
+  const d = new Date(iso);
+  let months = (NOW.getFullYear() - d.getFullYear()) * 12 + (NOW.getMonth() - d.getMonth());
+  if (NOW.getDate() < d.getDate()) months -= 1;
+  return Math.max(0, months);
+}
+
 function pushEntry(
   list: LedgerEntry[],
   args: Omit<LedgerEntry, "id" | "timestamp" | "approvalStatus" | "legalReviewStatus" | "shariaReviewStatus"> & {
@@ -76,10 +85,11 @@ function generateLedger(): LedgerEntry[] {
       });
     });
 
-    // 3. Usage payments — last 6 months
-    const now = new Date("2026-09-01");
-    for (let i = 6; i >= 1; i--) {
-      const d = new Date(now);
+    // 3. Usage payments — up to the last 6 months, never before the purchase date
+    const monthsOwned = monthsSince(property.purchaseDate);
+    const paymentMonths = Math.min(6, monthsOwned);
+    for (let i = paymentMonths; i >= 1; i--) {
+      const d = new Date(NOW);
       d.setMonth(d.getMonth() - i);
       const investorShare = 100 - (property.economicOwnership.find((o) => o.participantId === property.residentId)?.percentage ?? 50);
       const amount = Math.round(property.monthlyRent * (investorShare / 100) * (0.96 + rand() * 0.08));
@@ -93,31 +103,37 @@ function generateLedger(): LedgerEntry[] {
       });
     }
 
-    // 4. Property expenses — insurance + one maintenance event
-    pushEntry(entries, {
-      propertyId: property.id,
-      participantId: property.residentId,
-      type: "property_expense",
-      amount: Math.round(property.currentValuation * 0.0028),
-      ownershipImpact: false,
-      timestamp: addMonths(property.purchaseDate, 12),
-    });
-    pushEntry(entries, {
-      propertyId: property.id,
-      participantId: property.residentId,
-      type: "property_expense",
-      amount: Math.round(300 + rand() * 900),
-      ownershipImpact: false,
-      timestamp: addMonths(property.purchaseDate, 20),
-    });
+    // 4. Property expenses — one insurance premium, one maintenance event, both within the ownership period
+    if (monthsOwned >= 2) {
+      pushEntry(entries, {
+        propertyId: property.id,
+        participantId: property.residentId,
+        type: "property_expense",
+        amount: Math.round(property.currentValuation * 0.0028),
+        ownershipImpact: false,
+        timestamp: addMonths(property.purchaseDate, 2),
+      });
+    }
+    if (monthsOwned >= 5) {
+      pushEntry(entries, {
+        propertyId: property.id,
+        participantId: property.residentId,
+        type: "property_expense",
+        amount: Math.round(300 + rand() * 900),
+        ownershipImpact: false,
+        timestamp: addMonths(property.purchaseDate, 5),
+      });
+    }
   }
 
-  // 5. Buy-out narrative for Vilvoorde: Youssef 50% -> 58% over six steps
+  // 5. Buy-out narrative for Vilvoorde: Abdelwahid 50% -> 58% over the first year, one step every 2 months
   const vilvoorde = properties.find((p) => p.id === "prop-vilvoorde")!;
   let youssefPct = 50;
   let omarPct = 30;
   let saraPct = 20;
-  for (let i = 1; i <= 6; i++) {
+  const vilvoordeMonthsOwned = monthsSince(vilvoorde.purchaseDate);
+  const buyoutSteps = Math.min(6, Math.floor(vilvoordeMonthsOwned / 2));
+  for (let i = 1; i <= buyoutSteps; i++) {
     const amount = 600 + Math.round(rand() * 200);
     const before = { "p-youssef": youssefPct, "p-omar": omarPct, "p-sara": saraPct };
     const acquiredPct = (amount / vilvoorde.currentValuation) * 100;
@@ -133,7 +149,7 @@ function generateLedger(): LedgerEntry[] {
       ownershipImpact: true,
       economicOwnershipBefore: before["p-youssef"],
       economicOwnershipAfter: Math.round(youssefPct * 10) / 10,
-      timestamp: addMonths(vilvoorde.purchaseDate, i * 8),
+      timestamp: addMonths(vilvoorde.purchaseDate, i * 2),
       legalReviewStatus: i % 3 === 0 ? "approved" : "pending_tax_review",
     });
     pushEntry(entries, {
@@ -142,32 +158,32 @@ function generateLedger(): LedgerEntry[] {
       type: "administration_cost",
       amount: Math.round(amount * 0.015),
       ownershipImpact: false,
-      timestamp: addMonths(vilvoorde.purchaseDate, i * 8),
+      timestamp: addMonths(vilvoorde.purchaseDate, i * 2),
     });
   }
 
-  // 6. A couple of buy-outs elsewhere for realism
-  for (const propId of ["prop-machelen", "prop-leuven"]) {
-    const p = properties.find((pr) => pr.id === propId)!;
+  // 6. One early buy-out for the more recently acquired Grimbergen home
+  const grimbergen = properties.find((p) => p.id === "prop-grimbergen");
+  if (grimbergen && monthsSince(grimbergen.purchaseDate) >= 3) {
     const amount = 500 + Math.round(rand() * 250);
     pushEntry(entries, {
-      propertyId: p.id,
-      participantId: p.residentId,
+      propertyId: grimbergen.id,
+      participantId: grimbergen.residentId,
       type: "participation_acquisition",
       amount,
       ownershipImpact: true,
-      economicOwnershipBefore: p.economicOwnership.find((o) => o.participantId === p.residentId)?.percentage,
-      economicOwnershipAfter: (p.economicOwnership.find((o) => o.participantId === p.residentId)?.percentage ?? 0) + 1.2,
-      timestamp: addMonths(p.purchaseDate, 14),
+      economicOwnershipBefore: grimbergen.economicOwnership.find((o) => o.participantId === grimbergen.residentId)?.percentage,
+      economicOwnershipAfter: (grimbergen.economicOwnership.find((o) => o.participantId === grimbergen.residentId)?.percentage ?? 0) + 1.2,
+      timestamp: addMonths(grimbergen.purchaseDate, 3),
       legalReviewStatus: "pending_tax_review",
     });
     pushEntry(entries, {
-      propertyId: p.id,
-      participantId: p.residentId,
+      propertyId: grimbergen.id,
+      participantId: grimbergen.residentId,
       type: "administration_cost",
       amount: Math.round(amount * 0.015),
       ownershipImpact: false,
-      timestamp: addMonths(p.purchaseDate, 14),
+      timestamp: addMonths(grimbergen.purchaseDate, 3),
     });
   }
 
