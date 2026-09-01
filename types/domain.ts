@@ -140,10 +140,12 @@ export interface Property {
   id: string;
   name: LocalText;
   city: string;
+  country: string;
   address: string;
   imageUrl: string;
   purchasePrice: number;
   currentValuation: number;
+  monthlyRent: number;
   energyLabel: string;
   purchaseDate: string;
   structureModel: StructureModel;

@@ -82,8 +82,7 @@ function generateLedger(): LedgerEntry[] {
       const d = new Date(now);
       d.setMonth(d.getMonth() - i);
       const investorShare = 100 - (property.economicOwnership.find((o) => o.participantId === property.residentId)?.percentage ?? 50);
-      const referenceMonthly = (property.currentValuation * 0.042) / 12;
-      const amount = Math.round(referenceMonthly * (investorShare / 100) * (0.96 + rand() * 0.08));
+      const amount = Math.round(property.monthlyRent * (investorShare / 100) * (0.96 + rand() * 0.08));
       pushEntry(entries, {
         propertyId: property.id,
         participantId: property.residentId,

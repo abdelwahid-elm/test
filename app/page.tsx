@@ -17,7 +17,7 @@ import { governanceProposals } from "@/data/governance";
 import { formatEUR } from "@/lib/utils";
 
 export default function HomePage() {
-  const { dict, pick } = useLanguage();
+  const { dict, pick, locale } = useLanguage();
   const kpis = familyKpis();
   const series = portfolioGrowthSeries();
   const growth12m = kpis.familyNav - series[Math.max(0, series.length - 13)].value;
@@ -28,7 +28,7 @@ export default function HomePage() {
     <div className="flex flex-col gap-6">
       <div>
         <h1 className="font-serif text-2xl text-ink-950 lg:text-3xl">
-          {dict.dashboard.greeting}, Abdelwahid
+          {dict.dashboard.greeting}, {locale === "nl" ? "familie" : "la famille"}
         </h1>
         <p className="mt-1 max-w-xl text-sm text-ink-600/80">{dict.dashboard.subtitle}</p>
       </div>

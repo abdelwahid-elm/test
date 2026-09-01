@@ -36,7 +36,7 @@ export function PropertyCard({ property }: { property: Property }) {
         </div>
         <div className="p-5">
           <p className="font-serif text-lg text-ink-950">{pick(property.name)}</p>
-          <p className="text-xs text-ink-600/70">{property.city}</p>
+          <p className="text-xs text-ink-600/70">{property.city}, {property.country}</p>
 
           <div className="mt-4 flex items-end justify-between">
             <div>

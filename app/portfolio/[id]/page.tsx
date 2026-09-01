@@ -51,7 +51,7 @@ export default function PropertyDetailPage() {
         <Image src={property.imageUrl} alt={pick(property.name)} fill className="object-cover" priority sizes="100vw" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink-950/70 via-ink-950/10 to-transparent" />
         <div className="absolute bottom-0 left-0 p-5 text-cream-50 sm:p-7">
-          <p className="text-sm text-cream-100/80">{property.address}</p>
+          <p className="text-sm text-cream-100/80">{property.address} · {property.country}</p>
           <h1 className="mt-1 font-serif text-2xl sm:text-3xl">{pick(property.name)}</h1>
           <p className="mt-1 text-sm text-cream-100/70">
             {formatEUR(property.currentValuation)} ·{" "}

@@ -22,7 +22,7 @@ export function CashFlowTab({ property }: { property: Property }) {
     property.economicOwnership.find((o) => o.participantId === property.residentId)?.percentage ?? 0;
 
   const fee = calculateUsageFee(
-    { currentValuation: property.currentValuation, residentOwnershipPercent: residentOwnership },
+    { currentValuation: property.currentValuation, residentOwnershipPercent: residentOwnership, monthlyRent: property.monthlyRent },
     property.valuationMethod
   );
 

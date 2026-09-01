@@ -40,7 +40,9 @@ export function OverviewTab({ property }: { property: Property }) {
           </p>
         </div>
         <p className="mt-1 text-xs text-ink-600/60">
-          {locale === "nl" ? "Aankoopprijs" : "Prix d'achat"}: {formatEUR(property.purchasePrice)}
+          {locale === "nl" ? "Aankoopprijs" : "Prix d'achat"}: {formatEUR(property.purchasePrice)} ·{" "}
+          {locale === "nl" ? "Geschatte huur" : "Loyer estimé"}: {formatEUR(property.monthlyRent)}/
+          {locale === "nl" ? "maand" : "mois"}
         </p>
 
         <div className="mt-6 grid grid-cols-2 gap-4 border-t border-ink-900/8 pt-5 sm:grid-cols-3">

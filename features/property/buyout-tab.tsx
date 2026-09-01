@@ -187,7 +187,7 @@ function BuyoutSimulatorCard({
 
   const before = property.economicOwnership.map((o) => ({ participantId: o.participantId, percentage: o.percentage }));
   const beforeFee = calculateUsageFee(
-    { currentValuation: property.currentValuation, residentOwnershipPercent: residentOwnership },
+    { currentValuation: property.currentValuation, residentOwnershipPercent: residentOwnership, monthlyRent: property.monthlyRent },
     property.valuationMethod
   );
 
@@ -202,7 +202,7 @@ function BuyoutSimulatorCard({
   const afterResidentPct =
     result.ownershipAfter.find((o) => o.participantId === property.residentId)?.percentage ?? residentOwnership;
   const afterFee = calculateUsageFee(
-    { currentValuation: property.currentValuation, residentOwnershipPercent: afterResidentPct },
+    { currentValuation: property.currentValuation, residentOwnershipPercent: afterResidentPct, monthlyRent: property.monthlyRent },
     method
   );
 
