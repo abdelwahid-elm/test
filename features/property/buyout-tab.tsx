@@ -55,8 +55,8 @@ export function BuyoutTab({ property }: { property: Property }) {
 
 function PathTo100Card({ property, residentOwnership }: { property: Property; residentOwnership: number }) {
   const { locale } = useLanguage();
-  const [monthly, setMonthly] = useState(200);
-  const presets = [100, 200, 350, 500];
+  const [monthly, setMonthly] = useState(1000);
+  const presets = [500, 1000, 1750, 2500];
 
   const result = useMemo(
     () =>
@@ -120,10 +120,10 @@ function PathTo100Card({ property, residentOwnership }: { property: Property; re
               ))}
             </div>
             <div className="mt-4">
-              <Slider min={50} max={800} step={25} value={[monthly]} onValueChange={(v) => setMonthly(v[0])} />
+              <Slider min={250} max={4000} step={50} value={[monthly]} onValueChange={(v) => setMonthly(v[0])} />
               <div className="mt-1 flex justify-between text-[11px] text-ink-600/50">
-                <span>€50</span>
-                <span>€800</span>
+                <span>€250</span>
+                <span>€4.000</span>
               </div>
             </div>
           </div>
@@ -180,7 +180,7 @@ function BuyoutSimulatorCard({
   residentName: string;
 }) {
   const { locale, dict } = useLanguage();
-  const [amount, setAmount] = useState(500);
+  const [amount, setAmount] = useState(2000);
   const [method, setMethod] = useState<ValuationMethod>(property.valuationMethod);
 
   const valuation = valuationForMethod(property, method);

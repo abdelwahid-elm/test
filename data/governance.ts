@@ -3,12 +3,12 @@ import type { GovernanceProposal } from "@/types/domain";
 export const governanceProposals: GovernanceProposal[] = [
   {
     id: "gov-vilvoorde-2",
-    title: { nl: "Tweede woning aankopen in Vilvoorde voor €95.000", fr: "Acquérir un second bien à Vilvoorde pour 95 000 €" },
+    title: { nl: "Tweede woning aankopen in Vilvoorde voor €330.000", fr: "Acquérir un second bien à Vilvoorde pour 330 000 €" },
     memo: {
-      nl: "Voorstel om een tweede familiewoning te verwerven in Vilvoorde, vlakbij de bestaande woning. Voorgestelde structuur: Model A, bewoner nog te bepalen. Vereist €55.000 aan aanvullend kapitaal bovenop de bijdrage van de toekomstige bewoner.",
-      fr: "Proposition d'acquérir un second bien familial à Vilvoorde, à proximité du bien existant. Structure proposée : Modèle A, occupant à déterminer. Nécessite 55 000 € de capital complémentaire en plus de l'apport du futur occupant.",
+      nl: "Voorstel om een tweede familiewoning te verwerven in Vilvoorde, vlakbij de bestaande woning. Voorgestelde structuur: Model A, bewoner nog te bepalen. Vereist €180.000 aan aanvullend kapitaal bovenop de bijdrage van de toekomstige bewoner.",
+      fr: "Proposition d'acquérir un second bien familial à Vilvoorde, à proximité du bien existant. Structure proposée : Modèle A, occupant à déterminer. Nécessite 180 000 € de capital complémentaire en plus de l'apport du futur occupant.",
     },
-    requiredCapital: 55000,
+    requiredCapital: 180000,
     votingDeadline: "2026-09-20",
     eligibleVoterIds: [
       "p-youssef", "p-omar", "p-sara", "p-nadia", "p-hamid", "p-yasmine",

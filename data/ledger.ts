@@ -119,7 +119,7 @@ function generateLedger(): LedgerEntry[] {
         propertyId: property.id,
         participantId: property.residentId,
         type: "property_expense",
-        amount: Math.round(300 + rand() * 900),
+        amount: Math.round(500 + rand() * 2000),
         ownershipImpact: false,
         timestamp: addMonths(property.purchaseDate, 5),
       });
@@ -134,7 +134,7 @@ function generateLedger(): LedgerEntry[] {
   const vilvoordeMonthsOwned = monthsSince(vilvoorde.purchaseDate);
   const buyoutSteps = Math.min(6, Math.floor(vilvoordeMonthsOwned / 2));
   for (let i = 1; i <= buyoutSteps; i++) {
-    const amount = 600 + Math.round(rand() * 200);
+    const amount = 2000 + Math.round(rand() * 500);
     const before = { "p-youssef": youssefPct, "p-omar": omarPct, "p-sara": saraPct };
     const acquiredPct = (amount / vilvoorde.currentValuation) * 100;
     const omarShare = omarPct / (omarPct + saraPct);
@@ -165,7 +165,7 @@ function generateLedger(): LedgerEntry[] {
   // 6. One early buy-out for the more recently acquired Grimbergen home
   const grimbergen = properties.find((p) => p.id === "prop-grimbergen");
   if (grimbergen && monthsSince(grimbergen.purchaseDate) >= 3) {
-    const amount = 500 + Math.round(rand() * 250);
+    const amount = 1800 + Math.round(rand() * 700);
     pushEntry(entries, {
       propertyId: grimbergen.id,
       participantId: grimbergen.residentId,

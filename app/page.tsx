@@ -85,7 +85,7 @@ export default function HomePage() {
           href="/portfolio/prop-vilvoorde?tab=buyout"
           icon={<Wallet2 className="h-4 w-4 text-emerald-700" />}
           title={dict.dashboard.upcomingBuyouts}
-          value={formatEUR(1800)}
+          value={formatEUR(4300)}
           sub={dict.dashboard.thisMonth}
         />
         <SummaryCard
